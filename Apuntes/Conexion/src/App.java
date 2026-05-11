@@ -52,9 +52,9 @@ public class App {
      * alumnos completo, pero solo mostramos nombre y curso, no mostramos la nota.
      */
     public static void mostrarListadoBasico() {
-        String url = "jdbc:mysql://localhost:3306/instituto";
-        String user = "root";
-        String password = "12345";
+        String url = "jdbc:mysql://localhost:3306/instituto";//LA URL PA CONECTARNOS
+        String user = "root";//EL USUARIO CON EL QUE VAMOS A CONECTARNOS
+        String password = "12345";//LA CONTRASEÑA
 
         String sql = "SELECT nombre, curso FROM alumnos";
 
