@@ -15,7 +15,7 @@ public class App6 {
             while (rs.next()) {
                 String nombre = rs.getString("nombre");
                 String curso = rs.getString("curso");
-                Double nota_media = rs.getDouble(nota_media);
+                Double nota_media = rs.getString(nota_media);
                 System.out.println(nombre + " - " + curso + " - " + nota_media);
             }
             rs.close();
