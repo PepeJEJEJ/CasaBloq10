@@ -135,7 +135,7 @@ public class App {
         String user = "root";
         String password = "12345";
 
-        String sql = "SELECT AVG(nota) AS media FROM alumnos WHERE curso = ?";
+        String sql = "SELECT AVG(nota_media) AS media FROM alumnos WHERE curso = ?";
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -177,11 +177,11 @@ public class App {
         String sql = "";// EL COMANDO SQL EN BLANCO (EL PQ ESTA ABAJO:)
 
         if (opcion.equals("A")) {// A (POR TECLAO) NOS DA LOS APROBADOS (SI SUS NOTAS SUPERAN O SON 5)
-            sql = "SELECT nombre, curso, nota FROM alumnos WHERE nota >= 5";
+            sql = "SELECT nombre, curso, nota_media FROM alumnos WHERE nota_media >= 5";
         } else if (opcion.equals("S")) {// B (POR TECLAO) NOS DA LOS SUSPENSOS (SI SUS NOTAS NO SUPERAN NI EL 5)
-            sql = "SELECT nombre, curso, nota FROM alumnos WHERE nota < 5";
+            sql = "SELECT nombre, curso, nota_media FROM alumnos WHERE nota_media < 5";
         } else {
-            System.out.println("Opción no válida");// SI PONES BABOSADAS, SALE ESTO
+            System.out.println("Opcion invalida");// SI PONES BABOSADAS, SALE ESTO
             return;
         }
 
@@ -219,7 +219,7 @@ public class App {
         String user = "root";
         String password = "12345";
 
-        String sql = "Select nombre, curso, max(nota_media)FROM alumnos";// MAXIMO
+        String sql = "Select nombre, curso, nota_media FROM alumnos order by nota_media desc limit 1";// EL 1º REGISTRO TIENE LA NOTA MAS ALTA
 
         try {
             Connection conn = DriverManager.getConnection(url, user, password);
@@ -229,8 +229,8 @@ public class App {
             while (rs.next()) {// LAS COLUMNAS PA MOSTRAR SIEMPRE QUE HAYA INFORMACION
                 String nombre = rs.getString("nombre");
                 String curso = rs.getString("curso");
-                double nota = rs.getDouble("nota");
-                System.out.println(nombre + " - " + curso + " - Nota: " + nota);
+                double nota_media = rs.getDouble("nota_media");
+                System.out.println(nombre + " - " + curso + " - Nota: " + nota_media);
             }
 
             rs.close();
